@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-	const float VELOCITY = 3;
+	const float VELOCITY = 15;
 
 	// Use this for initialization
 	void Start()
