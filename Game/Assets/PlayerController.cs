@@ -3,12 +3,13 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+	GameObject mainCamera;
 	const float VELOCITY = 3;
 
 	// Use this for initialization
 	void Start()
 	{
-		
+		mainCamera = GameObject.Find("Camera");
 	}
 	
 	// Update is called once per frame
@@ -24,9 +25,14 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKey(KeyCode.DownArrow))
 			velY--;
 
-		Vector3 vel = new Vector3(velX, velY);
-		vel = vel.normalized * VELOCITY;
+		rigidbody.velocity = (velX == 0 && velY == 0)
+			? Vector3.zero
+				: (new Vector3(velX, velY).normalized * VELOCITY);
 
-		transform.position += vel * Time.deltaTime;
+		// update camera to follow player.
+		mainCamera.transform.position = new Vector3(
+			transform.position.x,
+			transform.position.y,
+			mainCamera.transform.position.z);
 	}
 }
