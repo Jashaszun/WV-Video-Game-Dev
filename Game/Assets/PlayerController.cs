@@ -35,4 +35,15 @@ public class PlayerController : MonoBehaviour
 			transform.position.y,
 			mainCamera.transform.position.z);
 	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log(collision.gameObject.name);
+		if (collision.gameObject.name == "Bullet(Clone)")
+		{
+			
+			RedFlash.Flash();
+			Destroy(collision.gameObject);
+		}
+	}
 }
